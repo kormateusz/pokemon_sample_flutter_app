@@ -1,5 +1,11 @@
 {
   "pokedex_screen_title": "Pokedex",
   "error_no_internet_connection": "No internet connection",
-  "error_unknown": "Unknown error"
+  "error_unknown": "Unknown error",
+  "details_screen_types_header": "Types:",
+  "details_screen_details_header": "Details:",
+  "details_screen_weight_header": "Weight",
+  "details_screen_height_header": "Height",
+  "details_screen_weight_unit": "hectograms",
+  "details_screen_height_unit": "decimetres"
 }

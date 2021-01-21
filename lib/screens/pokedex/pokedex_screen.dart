@@ -8,6 +8,7 @@ import 'package:pokemon_sample_app/common/resources/dimensions.dart';
 import 'package:pokemon_sample_app/generated/l10n.dart';
 import 'package:pokemon_sample_app/models/pokemon.dart';
 import 'package:pokemon_sample_app/screens/basic/base_screen.dart';
+import 'package:pokemon_sample_app/screens/details/details_screen.dart';
 import 'package:pokemon_sample_app/screens/pokedex/pokedex_bloc.dart';
 import 'package:pokemon_sample_app/screens/pokedex/pokedex_state.dart';
 
@@ -79,46 +80,57 @@ class _GridViewItem extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Dimensions.PADDING_NORMAL),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(Dimensions.PADDING_SMALL),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  _pokemon.name,
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontSize: Dimensions.FONT_NORMAL,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  "#${_pokemon.id}",
-                  style: TextStyle(
-                      color: AppColors.semitransparentBlack,
+      child: InkWell(
+        customBorder:RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Dimensions.PADDING_NORMAL),
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DetailsScreen(_pokemon)),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(Dimensions.PADDING_SMALL),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    _pokemon.name,
+                    style: TextStyle(
+                      color: AppColors.black,
                       fontSize: Dimensions.FONT_NORMAL,
-                      fontWeight: FontWeight.w800),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: CachedNetworkImage(
-                  fit: BoxFit.fitHeight,
-                  imageUrl: _pokemon.imageUrl,
-                  placeholder: (context, url) =>
-                      Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => Center(
-                    child: Text(S.current.error_unknown),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    "#${_pokemon.id}",
+                    style: TextStyle(
+                        color: AppColors.semitransparentBlack,
+                        fontSize: Dimensions.FONT_NORMAL,
+                        fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.fitHeight,
+                    imageUrl: _pokemon.imageUrl,
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Center(
+                      child: Text(S.current.error_unknown),
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

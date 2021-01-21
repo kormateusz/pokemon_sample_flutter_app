@@ -64,6 +64,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Types:`
+  String get details_screen_types_header {
+    return Intl.message(
+      'Types:',
+      name: 'details_screen_types_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details:`
+  String get details_screen_details_header {
+    return Intl.message(
+      'Details:',
+      name: 'details_screen_details_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weight`
+  String get details_screen_weight_header {
+    return Intl.message(
+      'Weight',
+      name: 'details_screen_weight_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Height`
+  String get details_screen_height_header {
+    return Intl.message(
+      'Height',
+      name: 'details_screen_height_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hectograms`
+  String get details_screen_weight_unit {
+    return Intl.message(
+      'hectograms',
+      name: 'details_screen_weight_unit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `decimetres`
+  String get details_screen_height_unit {
+    return Intl.message(
+      'decimetres',
+      name: 'details_screen_height_unit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
