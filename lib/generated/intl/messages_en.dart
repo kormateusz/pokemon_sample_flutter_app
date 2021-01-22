@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "details_screen_weight_unit" : MessageLookupByLibrary.simpleMessage("hectograms"),
     "error_no_internet_connection" : MessageLookupByLibrary.simpleMessage("No internet connection"),
     "error_unknown" : MessageLookupByLibrary.simpleMessage("Unknown error"),
+    "pokedex_screen_search_hint" : MessageLookupByLibrary.simpleMessage("Search by name"),
+    "pokedex_screen_search_no_results" : MessageLookupByLibrary.simpleMessage("No results"),
     "pokedex_screen_title" : MessageLookupByLibrary.simpleMessage("Pokedex")
   };
 }
