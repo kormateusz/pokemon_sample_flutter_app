@@ -11,4 +11,5 @@ class Dimensions {
   static const double FONT_LARGE = 36.0;
 
   static const double RADIUS_NORMAL = 16.0;
+  static const double RADIUS_BIG = 30.0;
 }

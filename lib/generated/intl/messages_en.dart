@@ -21,6 +21,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "details_screen_details_header" : MessageLookupByLibrary.simpleMessage("Details:"),
+    "details_screen_height_header" : MessageLookupByLibrary.simpleMessage("Height"),
+    "details_screen_height_unit" : MessageLookupByLibrary.simpleMessage("decimetres"),
+    "details_screen_types_header" : MessageLookupByLibrary.simpleMessage("Types:"),
+    "details_screen_weight_header" : MessageLookupByLibrary.simpleMessage("Weight"),
+    "details_screen_weight_unit" : MessageLookupByLibrary.simpleMessage("hectograms"),
     "error_no_internet_connection" : MessageLookupByLibrary.simpleMessage("No internet connection"),
     "error_unknown" : MessageLookupByLibrary.simpleMessage("Unknown error"),
     "pokedex_screen_title" : MessageLookupByLibrary.simpleMessage("Pokedex")
