@@ -1,1 +1,5 @@
-{}
+{
+  "pokedex_screen_title": "Pokedex",
+  "error_no_internet_connection": "No internet connection",
+  "error_unknown": "Unknown error"
+}

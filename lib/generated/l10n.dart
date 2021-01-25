@@ -35,7 +35,35 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Pokedex`
+  String get pokedex_screen_title {
+    return Intl.message(
+      'Pokedex',
+      name: 'pokedex_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
 
+  /// `No internet connection`
+  String get error_no_internet_connection {
+    return Intl.message(
+      'No internet connection',
+      name: 'error_no_internet_connection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown error`
+  String get error_unknown {
+    return Intl.message(
+      'Unknown error',
+      name: 'error_unknown',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
