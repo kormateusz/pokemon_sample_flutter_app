@@ -9,23 +9,21 @@ import 'package:pokemon_sample_app/models/pokemon.dart';
 import 'package:pokemon_sample_app/models/pokemon_details.dart';
 import 'package:pokemon_sample_app/models/pokemon_type.dart';
 import 'package:pokemon_sample_app/screens/basic/base_screen.dart';
-import 'package:pokemon_sample_app/screens/details/details_bloc.dart';
+import 'package:pokemon_sample_app/screens/details/details_cubit.dart';
 import 'package:pokemon_sample_app/screens/details/details_state.dart';
 
-import 'details_event.dart';
-
-class DetailsScreen extends BaseScreen<DetailsBloc> {
+class DetailsScreen extends BaseScreen<DetailsCubit> {
   DetailsScreen(Pokemon pokemon) {
-    bloc.add(DetailsEvent.load(pokemon));
+    cubit.loadDetails(pokemon);
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => bloc,
+        create: (_) => cubit,
         child: Scaffold(
           body:
-              BlocBuilder<DetailsBloc, DetailsState>(builder: (context, state) {
+              BlocBuilder<DetailsCubit, DetailsState>(builder: (context, state) {
             return state.when(
               loading: () => Center(
                 child: CircularProgressIndicator(),

@@ -9,16 +9,15 @@ import 'package:pokemon_sample_app/generated/l10n.dart';
 import 'package:pokemon_sample_app/models/pokemon.dart';
 import 'package:pokemon_sample_app/screens/basic/base_screen.dart';
 import 'package:pokemon_sample_app/screens/details/details_screen.dart';
-import 'package:pokemon_sample_app/screens/pokedex/pokedex_bloc.dart';
-import 'package:pokemon_sample_app/screens/pokedex/pokedex_event.dart';
+import 'package:pokemon_sample_app/screens/pokedex/pokedex_cubit.dart';
 import 'package:pokemon_sample_app/screens/pokedex/pokedex_state.dart';
 import 'package:pokemon_sample_app/widgets/search_field.dart';
 
-class PokedexScreen extends BaseScreen<PokedexBloc> {
+class PokedexScreen extends BaseScreen<PokedexCubit> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => bloc,
+      create: (_) => cubit,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.transparent,
@@ -33,14 +32,14 @@ class PokedexScreen extends BaseScreen<PokedexBloc> {
         body: Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_NORMAL),
-          child: BlocBuilder<PokedexBloc, PokedexState>(
+          child: BlocBuilder<PokedexCubit, PokedexState>(
             builder: (context, state) {
               return state.when(
                 loading: () => Center(
                   child: CircularProgressIndicator(),
                 ),
                 loaded: (list) {
-                  return _Body(bloc, list);
+                  return _Body(cubit, list);
                 },
                 error: (String errorMessage) => Center(
                   child: Text(errorMessage),
@@ -55,7 +54,7 @@ class PokedexScreen extends BaseScreen<PokedexBloc> {
 }
 
 class _Body extends StatelessWidget {
-  final PokedexBloc _bloc;
+  final PokedexCubit _bloc;
   final List<Pokemon> _list;
 
   _Body(this._bloc, this._list);
@@ -68,7 +67,7 @@ class _Body extends StatelessWidget {
       children: [
         SearchFiled(
             hintText: S.current.pokedex_screen_search_hint,
-            onChanged: (value) => _bloc.add(PokedexEvent.search(value))),
+            onChanged: (value) => _bloc.onSearchChange(value)),
         Flexible(
           child: _list.isEmpty ? _getEmptyState() : _getGridView(orientation),
         ),

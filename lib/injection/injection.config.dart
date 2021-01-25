@@ -9,11 +9,11 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 import '../api/api_service.dart';
-import '../screens/details/details_bloc.dart';
+import '../screens/details/details_cubit.dart';
 import '../usecases/get_pokemon_details_use_case.dart';
 import '../usecases/get_pokemons_list_use_case.dart';
 import 'network_module.dart';
-import '../screens/pokedex/pokedex_bloc.dart';
+import '../screens/pokedex/pokedex_cubit.dart';
 import '../repositories/pokemon_repository.dart';
 
 /// adds generated dependencies
@@ -33,8 +33,8 @@ GetIt $initGetIt(
       () => GetPokemonDetailsUseCase(get<PokemonRepository>()));
   gh.factory<GetPokemonsListUseCase>(
       () => GetPokemonsListUseCase(get<PokemonRepository>()));
-  gh.factory<PokedexBloc>(() => PokedexBloc(get<GetPokemonsListUseCase>()));
-  gh.factory<DetailsBloc>(() => DetailsBloc(get<GetPokemonDetailsUseCase>()));
+  gh.factory<PokedexCubit>(() => PokedexCubit(get<GetPokemonsListUseCase>()));
+  gh.factory<DetailsCubit>(() => DetailsCubit(get<GetPokemonDetailsUseCase>()));
   return get;
 }
 
