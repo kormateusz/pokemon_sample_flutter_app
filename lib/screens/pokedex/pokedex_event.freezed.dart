@@ -17,6 +17,13 @@ class _$PokedexEventTearOff {
   _LoadList loadList() {
     return const _LoadList();
   }
+
+// ignore: unused_element
+  _Search search(String value) {
+    return _Search(
+      value,
+    );
+  }
 }
 
 /// @nodoc
@@ -28,19 +35,23 @@ mixin _$PokedexEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loadList(),
+    @required TResult search(String value),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loadList(),
+    TResult search(String value),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loadList(_LoadList value),
+    @required TResult search(_Search value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loadList(_LoadList value),
+    TResult search(_Search value),
     @required TResult orElse(),
   });
 }
@@ -98,8 +109,10 @@ class _$_LoadList implements _LoadList {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loadList(),
+    @required TResult search(String value),
   }) {
     assert(loadList != null);
+    assert(search != null);
     return loadList();
   }
 
@@ -107,6 +120,7 @@ class _$_LoadList implements _LoadList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loadList(),
+    TResult search(String value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -120,8 +134,10 @@ class _$_LoadList implements _LoadList {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loadList(_LoadList value),
+    @required TResult search(_Search value),
   }) {
     assert(loadList != null);
+    assert(search != null);
     return loadList(this);
   }
 
@@ -129,6 +145,7 @@ class _$_LoadList implements _LoadList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loadList(_LoadList value),
+    TResult search(_Search value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -141,4 +158,118 @@ class _$_LoadList implements _LoadList {
 
 abstract class _LoadList implements PokedexEvent {
   const factory _LoadList() = _$_LoadList;
+}
+
+/// @nodoc
+abstract class _$SearchCopyWith<$Res> {
+  factory _$SearchCopyWith(_Search value, $Res Function(_Search) then) =
+      __$SearchCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$SearchCopyWithImpl<$Res> extends _$PokedexEventCopyWithImpl<$Res>
+    implements _$SearchCopyWith<$Res> {
+  __$SearchCopyWithImpl(_Search _value, $Res Function(_Search) _then)
+      : super(_value, (v) => _then(v as _Search));
+
+  @override
+  _Search get _value => super._value as _Search;
+
+  @override
+  $Res call({
+    Object value = freezed,
+  }) {
+    return _then(_Search(
+      value == freezed ? _value.value : value as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_Search implements _Search {
+  const _$_Search(this.value) : assert(value != null);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'PokedexEvent.search(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Search &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SearchCopyWith<_Search> get copyWith =>
+      __$SearchCopyWithImpl<_Search>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult loadList(),
+    @required TResult search(String value),
+  }) {
+    assert(loadList != null);
+    assert(search != null);
+    return search(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult loadList(),
+    TResult search(String value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (search != null) {
+      return search(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult loadList(_LoadList value),
+    @required TResult search(_Search value),
+  }) {
+    assert(loadList != null);
+    assert(search != null);
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult loadList(_LoadList value),
+    TResult search(_Search value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Search implements PokedexEvent {
+  const factory _Search(String value) = _$_Search;
+
+  String get value;
+  @JsonKey(ignore: true)
+  _$SearchCopyWith<_Search> get copyWith;
 }

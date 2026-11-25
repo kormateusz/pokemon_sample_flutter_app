@@ -45,21 +45,21 @@ class S {
     );
   }
 
-  /// `No internet connection`
-  String get error_no_internet_connection {
+  /// `Search by name`
+  String get pokedex_screen_search_hint {
     return Intl.message(
-      'No internet connection',
-      name: 'error_no_internet_connection',
+      'Search by name',
+      name: 'pokedex_screen_search_hint',
       desc: '',
       args: [],
     );
   }
 
-  /// `Unknown error`
-  String get error_unknown {
+  /// `No results`
+  String get pokedex_screen_search_no_results {
     return Intl.message(
-      'Unknown error',
-      name: 'error_unknown',
+      'No results',
+      name: 'pokedex_screen_search_no_results',
       desc: '',
       args: [],
     );
@@ -120,6 +120,26 @@ class S {
     return Intl.message(
       'decimetres',
       name: 'details_screen_height_unit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet connection`
+  String get error_no_internet_connection {
+    return Intl.message(
+      'No internet connection',
+      name: 'error_no_internet_connection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown error`
+  String get error_unknown {
+    return Intl.message(
+      'Unknown error',
+      name: 'error_unknown',
       desc: '',
       args: [],
     );

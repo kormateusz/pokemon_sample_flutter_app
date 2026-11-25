@@ -10,27 +10,25 @@ import 'package:pokemon_sample_app/models/pokemon.dart';
 import 'package:pokemon_sample_app/screens/basic/base_screen.dart';
 import 'package:pokemon_sample_app/screens/details/details_screen.dart';
 import 'package:pokemon_sample_app/screens/pokedex/pokedex_bloc.dart';
+import 'package:pokemon_sample_app/screens/pokedex/pokedex_event.dart';
 import 'package:pokemon_sample_app/screens/pokedex/pokedex_state.dart';
+import 'package:pokemon_sample_app/widgets/search_field.dart';
 
 class PokedexScreen extends BaseScreen<PokedexBloc> {
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
-
     return BlocProvider(
       create: (_) => bloc,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.transparent,
           elevation: 0.0,
-          title: Text(
-            S.current.pokedex_screen_title,
-            style: TextStyle(
-              color: AppColors.black,
-              fontSize: Dimensions.FONT_LARGE,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
+          title: Text(S.current.pokedex_screen_title,
+              style: TextStyle(
+                color: AppColors.black,
+                fontSize: Dimensions.FONT_LARGE,
+                fontWeight: FontWeight.w300,
+              )),
         ),
         body: Padding(
           padding:
@@ -42,21 +40,11 @@ class PokedexScreen extends BaseScreen<PokedexBloc> {
                   child: CircularProgressIndicator(),
                 ),
                 loaded: (list) {
-                  return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            orientation == Orientation.portrait ? 2 : 4,
-                        childAspectRatio: 4 / 3,
-                      ),
-                      itemCount: list.length,
-                      itemBuilder: (context, index) =>
-                          _GridViewItem(list[index]));
+                  return _Body(bloc, list);
                 },
-                error: (String errorMessage) {
-                  return Center(
-                    child: Text(errorMessage),
-                  );
-                },
+                error: (String errorMessage) => Center(
+                  child: Text(errorMessage),
+                ),
               );
             },
           ),
@@ -64,6 +52,42 @@ class PokedexScreen extends BaseScreen<PokedexBloc> {
       ),
     );
   }
+}
+
+class _Body extends StatelessWidget {
+  final PokedexBloc _bloc;
+  final List<Pokemon> _list;
+
+  _Body(this._bloc, this._list);
+
+  @override
+  Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+
+    return Column(
+      children: [
+        SearchFiled(
+            hintText: S.current.pokedex_screen_search_hint,
+            onChanged: (value) => _bloc.add(PokedexEvent.search(value))),
+        Flexible(
+          child: _list.isEmpty ? _getEmptyState() : _getGridView(orientation),
+        ),
+      ],
+    );
+  }
+
+  GridView _getGridView(Orientation orientation) => GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: orientation == Orientation.portrait ? 2 : 4,
+        childAspectRatio: 4 / 3,
+      ),
+      itemCount: _list.length,
+      itemBuilder: (context, index) => _GridViewItem(_list[index]));
+
+  Widget _getEmptyState() => Padding(
+        padding: const EdgeInsets.all(Dimensions.PADDING_NORMAL),
+        child: Text(S.current.pokedex_screen_search_no_results),
+      );
 }
 
 class _GridViewItem extends StatelessWidget {
@@ -81,7 +105,7 @@ class _GridViewItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(Dimensions.PADDING_NORMAL),
       ),
       child: InkWell(
-        customBorder:RoundedRectangleBorder(
+        customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimensions.PADDING_NORMAL),
         ),
         onTap: () {
